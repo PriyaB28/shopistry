@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+src/assets/frontend/images/*
+!src/assets/frontend/images/hero
+!src/assets/frontend/images/login.*
+!src/assets/frontend/images/logo.*
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
