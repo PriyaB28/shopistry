@@ -1,24 +1,28 @@
 import React from 'react'
-import {Navigate, Outlet } from 'react-router';
+import { Navigate, Outlet, useNavigate } from 'react-router';
 import Dashboard from '../backend/portal/dashboard/Dashboard'
+import Home from '../frontend/home/Home';
 
 function AdminRoutes() {
+    const navigate = useNavigate()
     const role = localStorage.getItem("role");
     console.log(role);
-    
+
     // function presentPage() {
     //     Navigate(-1);
     // }
 
-    if (!role) return <Navigate to="/login" replace="true" />;
+    if (!role) return <Navigate to="/" replace="true" />;
     if (role.toLowerCase() == 'admin') {
-         return (
-            <Outlet/>
-        )
+        navigate('/dashboard');
     }
-    else {
+    else if (role.toLowerCase() == 'user') {
         return (
-            <Navigate to="/login" replace="true" />
+            <Home />
+        )
+    } else {
+        return (
+            <Outlet />
         )
     }
 

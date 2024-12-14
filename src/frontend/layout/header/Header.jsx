@@ -4,24 +4,32 @@ import logo from '../../../assets/frontend/images/logo.png'
 import c16 from '../../../assets/frontend/images/client/16.jpg'
 import '../../../assets/frontend/libs/feather-icons/feather.min.js'
 import '../../../assets/frontend/js/app'
-import { ShoppingCart, Heart } from 'react-flaticons'
+import { ShoppingCart, Heart,SignOutAlt } from 'react-flaticons'
 import '../../../assets/frontend/js/plugins.init'
 import '../../../assets/frontend/js/app'
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink,useNavigate } from "react-router";
 
 function Header() {
+    const navigate = useNavigate();
     const [userDropdown, setUserDropDown] = useState('hidden')
+    const role = localStorage.getItem("role")
     const handleUserDropdown = (e) => {
         e.stopPropagation()
         console.log(userDropdown);
-
         (userDropdown == 'hidden') ? setUserDropDown('block') : setUserDropDown('hidden')
     }
 
+    const handleLogout = (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        navigate('/login')
+    }
+
+
     return (
         <>
-            <div className="tagline bg-slate-900">
+            {/* <div className="tagline bg-slate-900">
                 <div className="container relative">
                     <div className="grid grid-cols-1">
                         <div className="text-center">
@@ -29,9 +37,9 @@ function Header() {
                         </div>
                     </div>
                 </div>
-                {/* <!--end container--> */}
-            </div>
-            <nav id="topnav" className="defaultscroll is-sticky tagline-height">
+            </div> */}
+            {/* <nav id="topnav" className="defaultscroll is-sticky tagline-height"> */}
+            <nav id="topnav" className="defaultscroll is-sticky ">
                 <div className="container relative flex justify-between">
                     {/* <!-- Logo container--> */}
                     <a className="logo" href="index.html">
@@ -208,7 +216,7 @@ function Header() {
                                 <Heart />
                             </a>
                         </li>
-
+                         { role != null && role=='user' ?
                         <li className="dropdown inline-block relative ps-0.5">
                             <button
                                 data-dropdown-toggle="dropdown"
@@ -275,9 +283,9 @@ function Header() {
                                     </li>
                                 </ul> */}
                                 <ul className="py-2 text-start">
-                                   
-                                   
-                                    <li>
+
+
+                                    {/* <li>
                                         <NavLink to="/login"
                                             href="user-account.html"
                                             className="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"
@@ -302,20 +310,22 @@ function Header() {
                                             <i data-feather="settings" className="h-4 w-4 me-2"></i>
                                             Settings
                                         </a>
-                                    </li>
-                                    <li className="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+                                    </li> */}
+                                    {/* <li className="border-t border-gray-100 dark:border-gray-800 my-2"></li> */}
                                     <li>
-                                        <a
-                                            href="login.html"
+                                        <button type="submit"
+                                                onClick={handleLogout}
                                             className="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-orange-500 dark:hover:text-white"
                                         >
-                                            <i data-feather="log-out" className="h-4 w-4 me-2"></i>
+                                                {/* <i data-feather="log-out" className="h-4 w-4 me-2"></i> */}
+                                                <SignOutAlt className="mr-2"/> 
                                             Logout
-                                        </a>
+                                        </button>
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                            </li> :''
+                            }
                         {/* <!--end dropdown--> */}
                     </ul>
                     {/* <!--Login button End--> */}
@@ -354,7 +364,7 @@ function Header() {
                                 <a href="#">Products</a>
                                 <span className="menu-arrow"></span>
 
-                                <ul className="submenu megamenu">
+                                <ul className="submenu megamenu !start-48">
                                     <li>
                                         <ul>
                                             <li className="megamenu-head">Product Features</li>
@@ -980,9 +990,9 @@ function Header() {
                             </li>
 
                             <li>
-                                <a href="sale.html" className="sub-menu-item">
-                                    Sale
-                                </a>
+                                <NavLink to="/aboutus" className="sub-menu-item">
+                                    About
+                                </NavLink>
                             </li>
 
                             <li>
@@ -990,6 +1000,19 @@ function Header() {
                                     Contact
                                 </a>
                             </li>
+                            {role ==null ?
+                                 <li>
+                                 <NavLink to="/login"
+                                     href="user-account.html"
+                                     className="sub-menu-item"
+                                 >
+                                     <i data-feather="user" className="h-4 w-4 me-2"></i>Login
+                                 </NavLink>
+                                </li>
+                                : ""
+}
+                           
+
                         </ul>
                         {/* <!--end navigation menu--> */}
                     </div>

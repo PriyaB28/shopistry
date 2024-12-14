@@ -13,9 +13,28 @@ dist-ssr
 *.local
 
 src/assets/frontend/images/*
-!src/assets/frontend/images/hero
 !src/assets/frontend/images/login.*
+!src/assets/frontend/images/hero
 !src/assets/frontend/images/logo.*
+src/assets/backend/images/flags
+src/assets/backend/css/*.woff
+src/assets/backend/css/*.woff2
+src/assets/backend/css/[1-2*]*
+src/assets/backend/css/[3-2*]*
+src/assets/backend/css/[4-*]*
+src/assets/backend/css/[7-*]*
+src/assets/backend/css/bg-*
+src/assets/backend/images/apps
+src/assets/backend/images/authentication
+src/assets/backend/images/ecommerce/jpg
+src/assets/backend/images/faces/[11-30]*
+src/assets/backend/images/nft-images
+src/assets/backend/images/media/*.png
+src/assets/backend/images/media/*.jpg
+src/assets/backend/images/media/landing
+src/assets/backend/images/media/team-covers
+src/assets/backend/images/media/jobs-landing
+src/assets/backend/images/media/file-manager
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

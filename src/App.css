@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 } */
+
+@media (min-width: 1536px) {
+  .container {
+      max-width: 1536px !important;
+      padding-left: 13rem !important;
+      padding-right: 13rem !important;
+  }
+}
