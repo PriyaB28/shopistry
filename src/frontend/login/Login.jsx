@@ -2,11 +2,25 @@ import React from 'react'
 import loginImage from '../../assets/frontend/images/login.jpg'
 import logo from '../../assets/frontend/images/logo.png'
 import './login.css'
+import { useState } from 'react'
+import { NavLink } from 'react-router'
 
+
+const handleSubmit = (event) => {
+    event.preventDefault();
+    // console.log(event.target.email.value);
+    localStorage.setItem("email", event.target.email.value);
+    localStorage.setItem("role", event.target.role.value);
+    localStorage.setItem("password", event.target.password.value);
+  
+}
+  
 function Login() {
+    const [email, setEmail] = useState("");
+    const [role, setRole] = useState("");
+    const [password, setPassword] = useState("");
     return (
-        // <section className={`md:h-screen py-36 flex items-center bg-orange-900/90 bg-[url('./assets/frontend/images/hero/bg-shape.png')] bg-center bg-no-repeat bg-cover`}>
-        <section className={`md:h-screen py-36 flex items-center bg-orange-900/90 bg-[url('./assets/frontend/images/hero/bg-shape.png')] bg-center bg-no-repeat bg-cover`}>
+        <section className={`md:h-screen py-36 flex items-center bg-orange-500/10 dark:bg-orange-500/20 bg-[url('./assets/frontend/images/hero/bg-shape.png')] bg-center bg-no-repeat bg-cover`}>
             <div className="container relative">
                 <div className="grid grid-cols-1">
                     <div className="relative overflow-hidden rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
@@ -15,38 +29,38 @@ function Login() {
                                 <img className="lg:h-full h-full w-full object-cover md:h-[34rem]" src={loginImage} alt="" />
                             </div>
 
-                            <div className="p-7 lg:px-20">
+                            <div className="p-8 lg:px-20">
                                 <div className="text-center">
-                                    <a href="index.html">
-                                        <img src={logo } className="mx-auto block w-36 " alt="" />
-                                        {/* <img src="assets/images/logo-light.png" className="mx-auto hidden dark:block" alt="" /> */}
-                                    </a>
+                                    <NavLink to="/">
+                                     
+                                        <img src={logo} className="mx-auto hidden dark:block  w-36" alt="" />
+                                    </NavLink>
                                 </div>
 
-                                <form className="text-start lg:py-20 py-8">
+                                <form className="text-start lg:py-20 py-8" onSubmit={handleSubmit}>
                                     <div className="grid grid-cols-1">
-                                        <div className="mb-4">
+                                       
+                                    <div className="mb-4">
                                             <label className="font-semibold" >Email Address:</label>
-                                            <input id="LoginEmail" name='email' type="email" className="mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="name@example.com" />
+                                            <input  type="email" name='email' className="mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="name@example.com" value={email} onChange={(e)=>(setEmail(e.target.value))} />
                                         </div>
-
-                                        <div className="mb-4">
-                                            <label className="font-semibold" >Role</label>
-                                            <input id="role" name="role" type="text" className="mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="name@example.com" />
+                                    <div className="mb-4">
+                                            <label className="font-semibold" >Role:</label>
+                                            <input  type="text" name='role' className="mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="role" onChange={(e)=>(setRole(e.target.value))} />
                                         </div>
 
                                         <div className="mb-4">
                                             <label className="font-semibold" >Password:</label>
-                                            <input id="LoginPassword" name="password" na type="password" className="mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="Password:" />
+                                            <input id="LoginPassword" name='password' type="password" className="mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="Password:" onChange={(e)=>(setPassword(e.target.value))} />
                                         </div>
 
-                                        {/* <div className="flex justify-between mb-4">
+                                        <div className="flex justify-between mb-4">
                                             <div className="flex items-center mb-0">
                                                 <input className="form-checkbox rounded border-gray-100 dark:border-gray-800 text-orange-500 focus:border-orange-300 focus:ring focus:ring-offset-0 focus:ring-orange-200 focus:ring-opacity-50 me-2" type="checkbox" value="" id="RememberMe" />
                                                 <label className="form-checkbox-label text-slate-400" >Remember me</label>
                                             </div>
                                             <p className="text-slate-400 mb-0"><a href="forgot-password.html" className="text-slate-400">Forgot password ?</a></p>
-                                        </div> */}
+                                        </div>
 
                                         <div className="mb-4">
                                             <input type="submit" className="py-2 px-5 inline-block tracking-wide align-middle duration-500 text-base text-center bg-orange-500 text-white rounded-md w-full" value="Login / Sign in" />
